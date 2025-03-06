@@ -1,0 +1,40 @@
+# Node.js dependencies
+**/node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Build outputs
+**/dist/
+**/build/
+**/tmp/
+**/out-tsc/
+**/.angular/cache
+**/bazel-out
+
+# IDEs and Editors
+.idea/
+.vscode/
+.project
+.classpath
+.settings/
+*.sublime-workspace
+.c9/
+*.launch
+
+# Logs
+*.log
+testem.log
+libpeerconnection.log
+connect.lock
+
+# Coverage reports
+/coverage/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Miscellaneous
+.history/
+.sass-cache/
+.typings/
