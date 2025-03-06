@@ -1,0 +1,23 @@
+<p-table [value]="products" [paginator]="true" [rows]="5">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Código</th>
+            <th>Descrição</th>
+            <th>Situação</th>
+            <th>Ações</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+        <tr>
+            <td>{{ product.codigo }}</td>
+            <td>{{ product.descricao }}</td>
+            <td>{{ product.situacao }}</td>
+            <td>
+                <button pButton icon="pi pi-pencil" class="p-button-sm p-button-text"
+                    (click)="edit.emit(product)"></button>
+                <button pButton icon="pi pi-trash" class="p-button-sm p-button-danger" (click)="remove.emit(product.id)"
+                    [disabled]="product.hasMovements"></button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

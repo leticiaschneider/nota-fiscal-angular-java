@@ -1,0 +1,17 @@
+<p-toast></p-toast>
+
+<div class="p-3">
+    <div class="header-invoice">
+        <h2>Notas Fiscais</h2>
+        <button pButton label="Nova Nota Fiscal" icon="pi pi-plus" class="p-button-success"
+            (click)="navigateToNew()"></button>
+    </div>
+
+    <div class="search-bar">
+        <input type="text" pInputText placeholder="Buscar nota fiscal..." [(ngModel)]="searchTerm"
+            (input)="filterInvoices()" />
+    </div>
+
+    <app-invoice-list [invoices]="filteredInvoices" (edit)="navigateToEdit($event)" (remove)="deleteInvoice($event)">
+    </app-invoice-list>
+</div>

@@ -1,0 +1,67 @@
+<p-toast></p-toast>
+
+<form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()" class="p-fluid form-container">
+    <div class="header-invoice">
+        <h2>{{ invoiceId ? 'Edição da Nota Fiscal' : 'Cadastro de Nota Fiscal' }}</h2>
+    </div>
+
+    <div class="field">
+        <label for="invoiceNumber">Número da Nota</label>
+        <input id="invoiceNumber" type="text" pInputText formControlName="numeroNota" />
+    </div>
+
+    <div class="field">
+        <label for="emissionDate">Data de Emissão</label>
+        <p-calendar id="emissionDate" formControlName="dataEmissao" [showIcon]="true"></p-calendar>
+    </div>
+
+    <div class="field">
+        <label for="supplierId">Fornecedor</label>
+        <p-dropdown [options]="suppliers" formControlName="fornecedorId" placeholder="Selecione um fornecedor"
+            [optionLabel]="'cnpj'" [filter]="true">
+            <ng-template let-supplier pTemplate="item">
+                {{ supplier.cnpj }} - {{ supplier.razaoSocial }}
+            </ng-template>
+        </p-dropdown>
+    </div>
+
+    <div class="field">
+        <label for="address">Endereço</label>
+        <input id="address" type="text" pInputText formControlName="endereco" />
+    </div>
+
+    <h3>Itens da Nota Fiscal</h3>
+    <div formArrayName="items" class="invoice-items">
+        <div *ngFor="let item of items.controls; let i = index" [formGroupName]="i" class="item-row">
+            <p-dropdown [options]="products" formControlName="produtoId" placeholder="Selecione um produto"
+                [optionLabel]="'codigo'" [filter]="true">
+                <ng-template let-product pTemplate="item">
+                    {{ product.codigo }} - {{ product.descricao }}
+                </ng-template>
+            </p-dropdown>
+
+            <input type="text" pInputText formControlName="valorUnitario" placeholder="Valor Unitário"
+                (input)="updateTotalItemValue(i)" (blur)="formatCurrency(i)" (keydown)="allowOnlyNumbers($event)" />
+
+            <input type="number" pInputText formControlName="quantidade" placeholder="Quantidade"
+                (input)="updateTotalItemValue(i)" />
+
+            <input type="text" pInputText formControlName="valorTotalItem" placeholder="Total" readonly />
+
+            <button pButton type="button" icon="pi pi-trash" class="p-button-danger" (click)="removeItem(i)"></button>
+        </div>
+
+        <button pButton type="button" label="Adicionar Item" icon="pi pi-plus" (click)="addItem()"></button>
+    </div>
+
+    <div class="field totalValue">
+        <label for="totalValue">Valor Total</label>
+        <span>{{this.invoiceForm.get('valorTotal')?.value}}</span>
+    </div>
+
+    <div class="button-container">
+        <button pButton type="submit" label="Salvar" icon="pi pi-check" [disabled]="invoiceForm.invalid"></button>
+        <button pButton type="button" label="Cancelar" icon="pi pi-times" class="p-button-secondary"
+            (click)="onCancel()"></button>
+    </div>
+</form>

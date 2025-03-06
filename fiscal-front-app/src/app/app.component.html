@@ -1,0 +1,5 @@
+<app-sidebar (toggleEvent)="toggleSidebar($event)"></app-sidebar>
+
+<div class="content" [class.shifted]="isSidebarOpen">
+  <router-outlet></router-outlet>
+</div>

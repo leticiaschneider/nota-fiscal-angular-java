@@ -1,0 +1,31 @@
+<p-table [value]="suppliers" [paginator]="true" [rows]="5">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Código</th>
+            <th>Razão Social</th>
+            <th>E-Mail</th>
+            <th>Telefone</th>
+            <th>CNPJ</th>
+            <th>Situação</th>
+            <th>Data da Baixa</th>
+            <th>Ações</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-supplier>
+        <tr>
+            <td>{{ supplier.codigo }}</td>
+            <td>{{ supplier.razaoSocial }}</td>
+            <td>{{ supplier.email }}</td>
+            <td>{{ supplier.telefone }}</td>
+            <td>{{ supplier.cnpj | cnpj }}</td>
+            <td>{{ supplier.situacao }}</td>
+            <td>{{ supplier.dataBaixa | date: 'dd/MM/yyyy' }}</td>
+            <td>
+                <button pButton icon="pi pi-pencil" class="p-button-sm p-button-text"
+                    (click)="edit.emit(supplier)"></button>
+                <button pButton icon="pi pi-trash" class="p-button-sm p-button-danger" (click)="remove.emit(supplier.id)"
+                    [disabled]="supplier.hasMovements"></button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

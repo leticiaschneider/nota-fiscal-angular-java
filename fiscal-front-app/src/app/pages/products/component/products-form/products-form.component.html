@@ -1,0 +1,30 @@
+<p-toast></p-toast>
+
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="p-fluid form-container">
+    <div class="header-product">
+        <h2>{{ productId ? 'Edição do Produto' : 'Cadastro de Produto' }}</h2>
+    </div>
+
+    <div class="field">
+        <label for="code">Código</label>
+        <input id="code" type="text" pInputText formControlName="codigo" />
+    </div>
+
+    <div class="field">
+        <label for="description">Descrição</label>
+        <input id="description" type="text" pInputText formControlName="descricao" />
+    </div>
+
+    <div class="field">
+        <label for="status">Situação</label>
+        <p-dropdown id="status" [options]="statusOptions" optionLabel="label" formControlName="situacao"></p-dropdown>
+    </div>
+
+    <div class="button-container">
+        <button pButton type="button" label="Cancelar" icon="pi pi-times" class="p-button-secondary"
+            (click)="onCancel()">
+        </button>
+
+        <button pButton type="submit" label="Salvar" icon="pi pi-check" [disabled]="productForm.invalid"></button>
+    </div>
+</form>

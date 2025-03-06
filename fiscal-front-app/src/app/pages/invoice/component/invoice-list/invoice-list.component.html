@@ -1,0 +1,26 @@
+<p-table [value]="invoices" [paginator]="true" [rows]="5">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Número</th>
+            <th>Data de Emissão</th>
+            <th>Fornecedor</th>
+            <th>Valor Total</th>
+            <th>Ações</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-invoice>
+        <tr>
+            <td>{{ invoice.numeroNota }}</td>
+            <td>{{ invoice.dataEmissao | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ getSupplier(invoice.fornecedorId).cnpj }} - {{ getSupplier(invoice.fornecedorId).razaoSocial }}</td>
+            <td>{{ invoice.valorTotal | currency: 'BRL' }}</td>
+            <td>
+                <button pButton icon="pi pi-pencil" class="p-button-sm p-button-text"
+                    (click)="edit.emit(invoice)"></button>
+                <button pButton icon="pi pi-trash" class="p-button-sm p-button-danger"
+                    (click)="remove.emit(invoice.id)">
+                </button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

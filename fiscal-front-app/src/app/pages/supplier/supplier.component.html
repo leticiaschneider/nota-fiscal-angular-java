@@ -1,0 +1,18 @@
+<div class="p-3">
+    <p-toast></p-toast>
+    
+    <div class="header-supplier">
+        <h2>Fornecedores</h2>
+        <button pButton label="Novo Fornecedor" icon="pi pi-plus" class="p-button-success"
+            (click)="navigateToNew()"></button>
+    </div>
+
+    <div class="search-bar">
+        <input type="text" pInputText placeholder="Buscar fornecedor..." [(ngModel)]="searchTerm"
+            (input)="filterSuppliers()" />
+    </div>
+
+    <app-supplier-list [suppliers]="filteredSuppliers" (edit)="navigateToEdit($event)"
+        (remove)="deleteSupplier($event)">
+    </app-supplier-list>
+</div>

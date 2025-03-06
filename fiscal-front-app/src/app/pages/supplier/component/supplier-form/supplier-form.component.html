@@ -1,0 +1,50 @@
+<p-toast></p-toast>
+
+<form [formGroup]="supplierForm" (ngSubmit)="onSubmit()" class="p-fluid form-container">
+    <div class="header-supplier">
+        <h2>{{ supplierId ? 'Edição do Fornecedor' : 'Cadastro de Fornecedor' }}</h2>
+    </div>
+
+    <div class="field">
+        <label for="code">Código</label>
+        <input id="code" type="text" pInputText formControlName="codigo" />
+    </div>
+
+    <div class="field">
+        <label for="companyName">Razão Social</label>
+        <input id="companyName" type="text" pInputText formControlName="razaoSocial" />
+    </div>
+
+    <div class="field">
+        <label for="email">E-Mail</label>
+        <input id="email" type="email" pInputText formControlName="email" />
+    </div>
+
+    <div class="field">
+        <label for="phone">Telefone</label>
+        <input id="phone" type="text" pInputText formControlName="telefone" />
+    </div>
+
+    <div class="field">
+        <label for="cnpj">CNPJ</label>
+        <p-inputMask id="cnpj" type="text" formControlName="cnpj" mask="99.999.999/9999-99" placeholder="00.000.000/0000-00"></p-inputMask>
+    </div>
+
+    <div class="field">
+        <label for="status">Situação</label>
+        <p-dropdown id="status" [options]="statusOptions" optionLabel="label" formControlName="situacao"></p-dropdown>
+    </div>
+
+    <div class="field" *ngIf="supplierForm.get('status')?.value === 'Baixado'">
+        <label for="deactivationDate">Data da Baixa</label>
+        <p-calendar id="deactivationDate" formControlName="dataBaixa" [showIcon]="true"></p-calendar>
+    </div>
+
+    <div class="button-container">
+        <button pButton type="button" label="Cancelar" icon="pi pi-times" class="p-button-secondary"
+            (click)="onCancel()">
+        </button>
+
+        <button pButton type="submit" label="Salvar" icon="pi pi-check" [disabled]="supplierForm.invalid"></button>
+    </div>
+</form>

@@ -1,0 +1,9 @@
+.content {
+    margin-left: 60px;
+    padding: 20px;
+    transition: margin-left 0.3s;
+
+    &.shifted {
+        margin-left: 200px;
+    }
+}
