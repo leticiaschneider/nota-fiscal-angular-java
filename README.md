@@ -36,16 +36,20 @@ quarkus.datasource.jdbc.url=jdbc:postgresql://localhost:5432/SEU_BANCO
 
 #### 🔹 **Rodando o Backend**
 
-1. Instale as dependências do projeto:
+1. Acesse a pasta do backend:
+   ```sh
+   cd nota-fiscal-api
+   ```
+2. Instale as dependências do projeto:
    ```sh
    mvn clean install
    ```
-2. Inicie a aplicação:
+3. Inicie a aplicação:
    ```sh
    mvn quarkus:dev
    ```
-3. A API estará disponível em: `http://localhost:8080`
-4. Para acessar a interface do Swagger `http://localhost:8080/q/swagger-ui`
+4. A API estará disponível em: `http://localhost:8080`
+5. Para acessar a interface do Swagger `http://localhost:8080/q/swagger-ui`
 
 <br>
 
